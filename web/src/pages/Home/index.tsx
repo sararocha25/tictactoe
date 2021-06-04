@@ -127,6 +127,8 @@ const Home: React.FC<any> = () => {
 				</span>
 				<h3 className="text-xl text-center pt-4">Get Started</h3>
 				<div className="flex space-x-4 flex-wrap">
+					<button className="bg-black text-white px-4 py-3 hover:bg-white hover:text-black border border-black transition"
+>vs. Computador</button>
 					<button
 						className="bg-black text-white px-4 py-3 hover:bg-white hover:text-black border border-black transition"
 						onClick={createGame}
