@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, NavLink } from "react-router-dom";
 import { toast, Slide } from "react-toastify";
 
 import { API_URL } from "../../utils/constants";
@@ -128,6 +128,23 @@ const Home: React.FC<any> = () => {
 				height: window.innerHeight,
 			}}
 		>
+
+		<nav className="stroke navbar navbar-expand-lg navbar-light fixed-top">
+			<div className="container">
+			<Link className="navbar-brand" to={"/login"}>Jogo do Galo</Link>
+			<div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul className="navbar-nav ml-auto">
+				</ul>
+				<ul className="navbar-nav">
+					<React.Fragment>
+					<NavLink className="nav-link" to={"/login"}>Login</NavLink>
+					<NavLink  className="nav-link" to={"/registo"}>Sign up</NavLink>
+					</React.Fragment>
+				</ul>
+			</div>
+			</div>
+		</nav>
+
 			<div className="flex flex-col space-y-4 h-full items-center justify-center">
 				<span className="flex">
 					<p className="text-4xl font-bold mt-2">Tic-Tac-Toe</p>
