@@ -19,12 +19,11 @@ app.config['MYSQL_HOST'] = 'eu-cdbr-west-01.cleardb.com'
 app.config['MYSQL_DB'] = 'heroku_9fcb600dcaa8d34'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
-mysql = MYSQL(app)
+#mysql = MYSQL(app)
 #mysql.init_app(app)
 
 @game_blueprint.route('/')
 def index():
-    # Check if user is loggedin
     return render_template('index.html')
 
 
