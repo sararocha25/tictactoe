@@ -37,10 +37,10 @@ const Home: React.FC<any> = () => {
 
 
 	//vs Computer [1]
-	//const vsComputer = () =>
-	//	history.push({
-	//		pathname: "/computer"
-	//	});
+	const vsComputer = () =>
+		history.push({
+			pathname: "/computer"
+		});
 
 
 	const toggleJoinGameInput = () => setJoinGameInput(!joinGameInput);
@@ -135,10 +135,9 @@ const Home: React.FC<any> = () => {
 				</span>
 				<h3 className="text-xl text-center pt-4">Get Started</h3>
 				<div className="flex space-x-4 flex-wrap">
-					<form action = "/computer">
-					<button className="border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" type="submit"
+					
+					<button className="border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" type="submit" onClick={vsComputer}
 >vs. Computer</button>
-					</form>
 					
 					<button
 						className="bg-black text-white px-4 py-3 hover:bg-white hover:text-black border border-black transition"
