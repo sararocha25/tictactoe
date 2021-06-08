@@ -39,7 +39,7 @@ const Home: React.FC<any> = () => {
 	//vs Computer [1]
 	const vsComputer = async () => {
 		try {
-			const res = await fetch(`${API_URL}`);
+			const res = await fetch(`${API_URL}/computer`);
 			const data = await res.json();
 		} catch (err) {
 			console.error(err);
