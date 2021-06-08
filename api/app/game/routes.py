@@ -30,7 +30,7 @@ def irene():
 
 @game_blueprint.route('/computer')
 def computer():
-    return render_template("computer.html")
+    return render_template("/web/src/pages/Home/computer.html")
 
 
 @game_blueprint.route('/api/create/game')
