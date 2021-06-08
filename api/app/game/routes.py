@@ -25,13 +25,7 @@ mysql = MYSQL(app)
 @game_blueprint.route('/')
 def index():
     # Check if user is loggedin
-    if 'loggedin' in session:
-   
-        # User is loggedin show them the home page
-        return render_template('index.html', username=session['username'])
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
-    #return render_template('index.html')
+    return render_template('index.html')
 
 
 @game_blueprint.route('/game')
