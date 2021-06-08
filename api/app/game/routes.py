@@ -22,6 +22,11 @@ def join(gameId):
     return render_template('index.html')
 
 
+@game_blueprint.route('/computer')
+def computer(gameId):
+    return render_template('computer.html')
+
+
 @game_blueprint.route('/api/create/game')
 def create_game():
     game_id = random.randint(0, 99999)
