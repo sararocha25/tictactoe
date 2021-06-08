@@ -116,6 +116,7 @@ input#restart {
 div#winner {
     margin-left: 8%;
     margin-top: 20px;
+    font-weight: 400;
 }
 
 .button {
