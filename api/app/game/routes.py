@@ -5,10 +5,10 @@ import json
 import random
 from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
-from flask_mysqldb import MYSQL
-from flask import Flask, request, session, redirect, url_for, render_template
-import pymysql 
-import re 
+#from flask_mysqldb import MYSQL
+#from flask import Flask, request, session, redirect, url_for, render_template
+#import pymysql 
+#import re 
 
 #app = Flask(__name__)
 
@@ -40,13 +40,13 @@ def join(gameId):
 def computer():
     return render_template("computer.html")
 
-@game_blueprint.route('/login')
-def login():
-    return render_template("login.html")
+#@game_blueprint.route('/login')
+#def login():
+#    return render_template("login.html")
 
-@game_blueprint.route('/register')
-def register():
-    return render_template("register.html")
+#@game_blueprint.route('/register')
+#def register():
+#    return render_template("register.html")
 
 @game_blueprint.route('/api/create/game')
 def create_game():
