@@ -5,7 +5,9 @@ import json
 import random
 from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
+from flask import Flask
 
+app = Flask(__name__, template_folder="/web/src/pages/Home")
 
 @game_blueprint.route('/')
 def index():
@@ -22,9 +24,10 @@ def join(gameId):
     return render_template('index.html')
 
 
-@game_blueprint.route('/computer')
+@app.route('/computer')
 def computer():
-    return render_template('computer.html')
+    return render_template("computer.html")
+
 
 @game_blueprint.route('/api/create/game')
 def create_game():
