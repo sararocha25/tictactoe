@@ -26,11 +26,11 @@ def join(gameId):
 
 @game_blueprint.route('/irene')
 def irene():
-    return 'olá'
+    return render_template("ola.html")
 
 @game_blueprint.route('/computer')
 def computer():
-    return render_template("/web/src/pages/Home/computer.html")
+    return render_template("computer.html")
 
 
 @game_blueprint.route('/api/create/game')
