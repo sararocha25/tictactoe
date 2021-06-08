@@ -10,14 +10,14 @@ from flask import Flask, request, session, redirect, url_for, render_template
 import pymysql 
 import re 
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
 #MYSQL Conn
-app.config['MYSQL_USER'] = 'bca97c0b98a93b'
-app.config['MYSQL_PASSWORD'] = '1c291eda'
-app.config['MYSQL_HOST'] = 'eu-cdbr-west-01.cleardb.com'
-app.config['MYSQL_DB'] = 'heroku_9fcb600dcaa8d34'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+#app.config['MYSQL_USER'] = 'bca97c0b98a93b'
+#app.config['MYSQL_PASSWORD'] = '1c291eda'
+#app.config['MYSQL_HOST'] = 'eu-cdbr-west-01.cleardb.com'
+#app.config['MYSQL_DB'] = 'heroku_9fcb600dcaa8d34'
+#app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #mysql = MYSQL(app)
 #mysql.init_app(app)
@@ -41,11 +41,11 @@ def computer():
     return render_template("computer.html")
 
 @game_blueprint.route('/login')
-def computer():
+def login():
     return render_template("login.html")
 
 @game_blueprint.route('/register')
-def computer():
+def register():
     return render_template("register.html")
 
 @game_blueprint.route('/api/create/game')
