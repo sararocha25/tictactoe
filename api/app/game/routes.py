@@ -24,10 +24,6 @@ def game():
 def join(gameId):
     return render_template('index.html')
 
-@game_blueprint.route('/irene')
-def irene():
-    return render_template("ola.html")
-
 @game_blueprint.route('/computer')
 def computer():
     return render_template("computer.html")
