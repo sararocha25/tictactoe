@@ -40,13 +40,13 @@ def join(gameId):
 def computer():
     return render_template("computer.html")
 
-#@game_blueprint.route('/login')
-#def login():
-#    return render_template("login.html")
+@game_blueprint.route('/login')
+def login():
+    return render_template("login.html")
 
-#@game_blueprint.route('/register')
-#def register():
-#    return render_template("register.html")
+@game_blueprint.route('/register')
+def register():
+    return render_template("register.html")
 
 @game_blueprint.route('/api/create/game')
 def create_game():

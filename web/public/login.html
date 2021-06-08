@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+
+<div class="login-box" >
+  <div class="login-header">Login</div>
+  <div class="login-body">
+   <p>Please enter your username and password</p>
+   <form class="form-group" action="{{ url_for('login') }}" method="post">
+    <label>Username</label>
+    <input type="text" class="form-control" name="username" placeholder="Username" id="username" required>
+    <label>Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+    <input type="checkbox" value="checked"><b>Remember</b>
+    <input type="submit" value="Login" class="form-control btn btn-success " name="">
+   </form>
+   <div id="msg"></div>
+   <p>No account <a href="{{ url_for('register') }}">Register</a></p>
+  </div>
+ </div>
