@@ -74,8 +74,6 @@ function updateMove() {
 
     $(".turn").html(myMove ? '<i class="fa fa-circle-o" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>');
 
-    restartGame();
-
     // if(myMove) {
     //     $(".turn").removeClass('fa fa-times');
     //     $(".turn").addClass('fa fa-circle-o');
