@@ -23,9 +23,8 @@ def join(gameId):
 
 
 @game_blueprint.route('/computer')
-def computer(gameId):
+def computer():
     return render_template('computer.html')
-
 
 @game_blueprint.route('/api/create/game')
 def create_game():

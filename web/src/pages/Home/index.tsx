@@ -35,6 +35,19 @@ const Home: React.FC<any> = () => {
 		}
 	};
 
+
+	//vs Computer [1]
+	const vsComputer = async () => {
+		try {
+			const res = await fetch(`${API_URL}`);
+			const data = await res.json();
+		} catch (err) {
+			console.error(err);
+			errorToast();
+		}
+	};
+
+
 	const toggleJoinGameInput = () => setJoinGameInput(!joinGameInput);
 
 	const startGame = () =>
@@ -127,8 +140,8 @@ const Home: React.FC<any> = () => {
 				</span>
 				<h3 className="text-xl text-center pt-4">Get Started</h3>
 				<div className="flex space-x-4 flex-wrap">
-					<a className="border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" href="computer.html"
->vs. Computer</a>
+					<button className="border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" onClick={vsComputer}
+>vs. Computer</button>
 					<button
 						className="bg-black text-white px-4 py-3 hover:bg-white hover:text-black border border-black transition"
 						onClick={createGame}
