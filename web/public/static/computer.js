@@ -61,7 +61,8 @@ function updateMove() {
     
     var winner = getWinner(board);
     
-    $("#winner").text(winner == 1 ? "AI Won!" : winner == 0 ? "You Won!" : winner == -1 ? "Tie!" : "");
+    $("#winner").text(winner == 1 ? "Computer Won!" : winner == 0 ? "You Won!" : winner == -1 ? "Tie!" : "");
+    restartGame();
     
     if(winner == 1) {
         score2++;
