@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { toast, Slide } from "react-toastify";
-
 import { API_URL } from "../../utils/constants";
 import { errorToast } from "../../utils/errorToast";
 import { searchGame } from "../../utils/searchGame";
@@ -138,7 +137,7 @@ const Home: React.FC<any> = () => {
 				<ul className="navbar-nav">
 					<React.Fragment>
 					<NavLink className="nav-link" to={"/login"}>Login</NavLink>
-					<NavLink  className="nav-link" to={"/registo"}>Sign up</NavLink>
+					<NavLink  className="nav-link" to={"/register"}>Sign up</NavLink>
 					</React.Fragment>
 				</ul>
 			</div>

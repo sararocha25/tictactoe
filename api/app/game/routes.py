@@ -5,15 +5,33 @@ import json
 import random
 from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
-from flask import Flask
+from flask_mysqldb import MYSQL
+from flask import Flask, request, session, redirect, url_for, render_template
+import pymysql 
+import re 
 
-#app = Flask(__name__, template_folder="/web/src/pages/Home")
-#app = Flask(__name__)
+app = Flask(__name__)
 
+#MYSQL Conn
+app.config['MYSQL_USER'] = 'bca97c0b98a93b'
+app.config['MYSQL_PASSWORD'] = '1c291eda'
+app.config['MYSQL_HOST'] = 'eu-cdbr-west-01.cleardb.com'
+app.config['MYSQL_DB'] = 'heroku_9fcb600dcaa8d34'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+mysql = MYSQL(app)
+#mysql.init_app(app)
 
 @game_blueprint.route('/')
 def index():
-    return render_template('index.html')
+    # Check if user is loggedin
+    if 'loggedin' in session:
+   
+        # User is loggedin show them the home page
+        return render_template('index.html', username=session['username'])
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+    #return render_template('index.html')
 
 
 @game_blueprint.route('/game')
@@ -28,6 +46,109 @@ def join(gameId):
 @game_blueprint.route('/computer')
 def computer():
     return render_template("computer.html")
+
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+ # connect
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+  
+    # Output message if something goes wrong...
+    msg = ''
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        # Create variables for easy access
+        username = request.form['username']
+        password = request.form['password']
+        # Check if account exists using MySQL
+        cursor.execute('SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password))
+        # Fetch one record and return result
+        account = cursor.fetchone()
+   
+    # If account exists in accounts table in out database
+        if account:
+            # Create session data, we can access this data in other routes
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['username'] = account['username']
+            # Redirect to home page
+            #return 'Logged in successfully!'
+            return redirect(url_for('home'))
+        else:
+            # Account doesnt exist or username/password incorrect
+            msg = 'Incorrect username/password!'
+    
+    return render_template('login.html', msg=msg)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+ # connect
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+  
+    # Output message if something goes wrong...
+    msg = ''
+    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        # Create variables for easy access
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+   
+  #Check if account exists using MySQL
+        cursor.execute('SELECT * FROM accounts WHERE username = %s', (username))
+        account = cursor.fetchone()
+        # If account exists show error and validation checks
+        if account:
+            msg = 'Account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address!'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers!'
+        elif not username or not password or not email:
+            msg = 'Please fill out the form!'
+        else:
+            # Account doesnt exists and the form data is valid, now insert new account into accounts table
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, password, email)) 
+            conn.commit()
+   
+            msg = 'You have successfully registered!'
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    # Show registration form with message (if any)
+    return render_template('register.html', msg=msg)
+
+
+@app.route('/logout')
+def logout():
+    # Remove session data, this will log the user out
+   session.pop('loggedin', None)
+   session.pop('id', None)
+   session.pop('username', None)
+   # Redirect to login page
+   return redirect(url_for('login'))
+
+
+
+@app.route('/profile')
+def profile(): 
+ # Check if account exists using MySQL
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+  
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        # We need all the account info for the user so we can display it on the profile page
+        cursor.execute('SELECT * FROM accounts WHERE id = %s', [session['id']])
+        account = cursor.fetchone()
+        # Show the profile page with account info
+        return render_template('profile.html', account=account)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
 
 
 @game_blueprint.route('/api/create/game')
