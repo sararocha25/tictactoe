@@ -32,7 +32,7 @@ body {
     font-size: 80px;
     color: #461F00;
     text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
-    font-family: fantasy;
+    font-family: 'Poppins';
 }
 
 .bottom {
@@ -51,7 +51,7 @@ body {
 }
 
 .right-side {
-    font-family: 'Lato';
+    font-family: 'Poppins';
     flex-grow: 0;
     text-align: center;
     max-width: 340px;
@@ -59,14 +59,14 @@ body {
 
 .left-side .row {
     font-size: 50px;
-    font-family: 'Indie Flower';
+    font-family: 'Poppins';
     text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
     padding: 5px;
 }
 
 .score {
     background: black;
-    color: red;
+    color: whitesmoke;
     height: 50px;
     font-size: 35px;
     flex-grow: 1;
@@ -100,20 +100,6 @@ body {
     display: flex;
     justify-content: center;
     width: 43px;
-}
-
-marquee {
-    background: black;
-    color: red;
-    font-family: 'VT323';
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    height: 30px;
-    width: 75%;
-    margin-left: 20%;
-    margin-right: 5%;
-    border-radius: 4px;
 }
 
 a {
@@ -165,6 +151,3 @@ div#winner {
     padding-bottom: 9px;
 }
 
-.wood {
-    background: url(https://1.bp.blogspot.com/-tXavBQFjNFQ/VMSaYaq7PtI/AAAAAAAADSc/awMPRe3yu5A/s1600/wood_pattern.png);
-}
