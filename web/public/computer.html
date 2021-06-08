@@ -1,15 +1,85 @@
+<style>
 
-    height: 50px;
-    font-size: 35px;
-    flex-grow: 1;
-    margin: 0;
-    border-radius: 4px;
-    font-family: 'VT323';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 57px;
-}
+    @import url('https://fonts.googleapis.com/css?family=Lato|VT323|Indie+Flower');
+    
+    body {
+        background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
+    }
+    
+    .container {
+        min-width: 650px;
+        max-width: 900px;
+        display: flex;
+        margin: 40px auto 20px auto;    
+    }
+    
+    .gameboard {
+        width: 360px;
+    }
+    
+    .center {
+        flex-grow: 0;
+    }
+    
+    .row {
+        clear: both;
+        overflow: hidden;
+    }
+    
+    .square {
+        float: left;
+        height: 100px;
+        width: 117px;
+        text-align: center;
+        font-size: 80px;
+        color: #461F00;
+        text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+        font-family: fantasy;
+    }
+    
+    .bottom {
+        border-bottom: 4px solid #392E20;
+    }
+    
+    .right {
+        border-right: 4px solid #392E20;
+    }
+    
+    .left-side {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        max-width: 160px;
+    }
+    
+    .right-side {
+        font-family: 'Lato';
+        flex-grow: 0;
+        text-align: center;
+        max-width: 340px;
+    }
+    
+    .left-side .row {
+        font-size: 50px;
+        font-family: 'Indie Flower';
+        text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+        padding: 5px;
+    }
+    
+    .score {
+        background: black;
+        color: red;
+        height: 50px;
+        font-size: 35px;
+        flex-grow: 1;
+        margin: 0;
+        border-radius: 4px;
+        font-family: 'VT323';
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 57px;
+    }
 
 .player {
     display: flex;
