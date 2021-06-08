@@ -62,7 +62,7 @@ function updateMove() {
     var winner = getWinner(board);
     
     $("#winner").text(winner == 1 ? "Computer Won!" : winner == 0 ? "You Won!" : winner == -1 ? "Tie!" : "");
-    restartGame();
+    
     
     if(winner == 1) {
         score2++;
@@ -73,6 +73,8 @@ function updateMove() {
     }
 
     $(".turn").html(myMove ? '<i class="fa fa-circle-o" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>');
+
+    restartGame();
 
     // if(myMove) {
     //     $(".turn").removeClass('fa fa-times');
