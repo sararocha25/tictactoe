@@ -7,7 +7,7 @@ from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
 from flask import Flask
 
-app = Flask(__name__, template_folder="/web/src/pages/Home")
+app = Flask(__name__, template_folder="../web/src/pages/Home")
 
 @game_blueprint.route('/')
 def index():
