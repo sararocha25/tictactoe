@@ -24,6 +24,10 @@ def game():
 def join(gameId):
     return render_template('index.html')
 
+@game_blueprint.route('/irene')
+def irene():
+    return 'por favor dá'
+
 
 @app.route('/computer')
 def computer():
