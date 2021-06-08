@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|VT323|Indie+Flower');
+
+body {
+    background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
+}
+
+.container {
+    min-width: 650px;
+    max-width: 900px;
+    display: flex;
+    margin: 40px auto 20px auto;    
+}
+
+.gameboard {
+    width: 360px;
+}
+
+.center {
+    flex-grow: 0;
+}
+
+.row {
+    clear: both;
+    overflow: hidden;
+}
+
+.square {
+    float: left;
+    height: 100px;
+    width: 117px;
+    text-align: center;
+    font-size: 80px;
+    color: #461F00;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+    font-family: fantasy;
+}
+
+.bottom {
+    border-bottom: 4px solid #392E20;
+}
+
+.right {
+    border-right: 4px solid #392E20;
+}
+
+.left-side {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 160px;
+}
+
+.right-side {
+    font-family: 'Lato';
+    flex-grow: 0;
+    text-align: center;
+    max-width: 340px;
+}
+
+.left-side .row {
+    font-size: 50px;
+    font-family: 'Indie Flower';
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+    padding: 5px;
+}
+
+.score {
+    background: black;
+    color: red;
+    height: 50px;
+    font-size: 35px;
+    flex-grow: 1;
+    margin: 0;
+    border-radius: 4px;
+    font-family: 'VT323';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 57px;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    padding-right: 5px;
+}
+
+.player-name {
+    flex-grow: 2;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+}
+
+.player-turn {
+    flex-grow: 2;
+}
+
+.turn {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    width: 43px;
+}
+
+marquee {
+    background: black;
+    color: red;
+    font-family: 'VT323';
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 75%;
+    margin-left: 20%;
+    margin-right: 5%;
+    border-radius: 4px;
+}
+
+a {
+    text-decoration: none;
+    color: red;
+    width: 300px;
+}
+
+input#restart {
+    width: 90px;
+    margin: 10px 0 20px 0;
+}
+
+div#winner {
+    margin-left: 8%;
+    margin-top: 20px;
+}
+
+.button {
+    position: relative;
+    border: none;
+    display: inline-block;
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+    inset 0px -5px 0px 0px rgba(0,0,0,0.3),
+    inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 90px;
+    text-align: center;
+}
+
+.button:active {
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
+    inset 0px -2px 0px 0px rgba(0,0,0,0.3),
+    inset 0px 2px 0px 0px rgba(255,255,255,0.5);
+    top: 3px;
+}
+
+.button div {
+    padding: 10px 20px 12px 20px;
+    color: rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+}
+
+.button:active div {
+    padding-bottom: 9px;
+}
+
+.wood {
+    background: url(https://1.bp.blogspot.com/-tXavBQFjNFQ/VMSaYaq7PtI/AAAAAAAADSc/awMPRe3yu5A/s1600/wood_pattern.png);
+}
