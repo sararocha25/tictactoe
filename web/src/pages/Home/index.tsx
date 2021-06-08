@@ -39,7 +39,7 @@ const Home: React.FC<any> = () => {
 	//vs Computer [1]
 	const vsComputer = () =>
 		history.push({
-			pathname: "/lalla"
+			pathname: "/computer"
 		});
 
 
