@@ -1,18 +1,26 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+<form>
 
-<div class="login-box" >
-  <div class="login-header">Login</div>
-  <div class="login-body">
-   <p>Please enter your username and password</p>
-   <form class="form-group" method="post">
-    <label>Username</label>
-    <input type="text" class="form-control" name="username" placeholder="Username" id="username" required>
-    <label>Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
-    <input type="checkbox" value="checked"><b>Remember</b>
-    <input type="submit" value="Login" class="form-control btn btn-success " name="">
-   </form>
-   <div id="msg"></div>
-   <p>No account <a >Register</a></p>
-  </div>
- </div>
+    <h3>Log in</h3>
+
+    <div className="form-group">
+        <label>Email</label>
+        <input type="email" className="form-control" placeholder="Enter email" />
+    </div>
+
+    <div className="form-group">
+        <label>Password</label>
+        <input type="password" className="form-control" placeholder="Enter password" />
+    </div>
+
+    <div className="form-group">
+        <div className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input" id="customCheck1" />
+            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+        </div>
+    </div>
+
+    <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
+    <p className="forgot-password text-right">
+        Forgot <a href="#">password?</a>
+    </p>
+</form>
