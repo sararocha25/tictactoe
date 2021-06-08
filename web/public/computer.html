@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Tic Tac Toe</title>
-	<link rel="stylesheet" type="text/css" href="TicTacToe.css">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='TicTacToe.css')}}">
 </head>
 
 <body>
@@ -58,6 +58,6 @@
         </div>
 
     </div>
-	<script type="text/javascript", src="TicTacToe.js"></script>
+	<script src="{{url_for('static', filename='TicTacToe.js')}}"></script>
 </body>
 </html>
