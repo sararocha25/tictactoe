@@ -1,152 +1,199 @@
-var td = document.querySelectorAll("td"); // all column in the table
-var resetButton = document.getElementById("reset"); // reset button
-var oneVsOneButton = document.getElementById("1vs1");// 1vs1 button
-var againstComputerButton = document.getElementById("computer"); // Against computer button
+/**
+*             TIC TAC TOE
+*         for freeCodeCamp.com
+*
+*       by Angelo Palmieri - 2017
+*
+* Game using CSS3, jQuery and the minimax algorithm
+*
+*/
 
-var turn = false , count = 0 , state = " ";
+var board = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null]
+]
 
-var Me = "X" , Computer = "O";
+var myMove = false;
 
-var Board = Array.from(Array(9).keys());
+var score1 = 0;
 
-//event listener to resetButton
-resetButton.addEventListener('click',function(){
-	Reset();//call reset function
-	state = "Reset"; // change state variable to Reset
+var score2 = 0;
 
+if (myMove) {
+    makeMove();
+}
+
+function restartGame() {
+    board = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+    ];
+    myMove = false;
+    $('div').removeClass('notEmpty');
+    updateMove();
+}
+
+$(document).ready(function() {
+    $(".square").click(function() {
+
+        if($(this).hasClass('notEmpty')) {
+            console.log('notEmpty');
+        } else {
+            var cell = $(this).attr("id")
+            var row = parseInt(cell[1])
+            var col = parseInt(cell[2])
+            $(this).addClass('notEmpty');
+            if (!myMove) {
+                board[row][col] = false;
+                myMove = true;
+                updateMove();
+                makeMove();
+            }
+        }
+    });
+    $("#restart").click(restartGame);
 });
-//listener to 1 vs 1 button button
-oneVsOneButton.addEventListener('click',function(){
-	Reset();
-	state = "1VS1";//change state variable to 1VS1
-	addEventActionFrom_xORoFunction(); // add event to current square that pressed from the table
-	
-});
-//Listener to Computer button
-againstComputerButton.addEventListener('click',function()
-	{
-		Reset();
-		state = "againstComp";//change state variable to againstComp
-		addEventActionFrom_xORoFunction();// add event to current square that pressed from the table
-});
-//like a main function , when this function called i do everything 
-function xORo(e)
-{
-	if(e.type === "click")
-		e = e.currentTarget;//if xORo function call from event i need the currentTarget else (from miniMax algorithm) i the real e and not the currentTarget 
-	if(e.textContent != Computer && e.textContent != Me )
-	{
-			e.classList.toggle('help');//add new design to current square that pressed
-			count++;//count the amount of clicks on the table
-			var ia = Number(e.id); //convert to number the current index that pressed
-			!turn ? e.textContent = Me : e.textContent = Computer;//add to the td table X or O player
-			!turn ? Board[ia] = Me : Board[ia] = Computer;//add X or O to the Board array (help to figure who win)
-			turn=!turn;//change the turn of player
 
-			if(checkIfWinner(Board , Board[ia])){
-				setTimeout(()=>alert("Player " + (turn? 'X' : 'O') + " Winner"), 250);//wait 150milisecond and alert which one is winner
-				removeEventActioFrom_xORoFunction();//when someone is win i dont want to keep the game , so i block all other sqaure that didnt pressed
-			}
-			else if(td.length === count)//check if the game is draw
-				setTimeout(()=>alert("Draw"),150);
-			if(state === "againstComp" && turn === true)//if the state is againstComp and turn is true(turn computer to play) i call xORo function with the random index from miniMax algorithm
-				setTimeout(()=>xORo(td[minimax(Board,Computer).index]),250);
-		}
+function updateMove() {
+    updateButtons();
+    
+    var winner = getWinner(board);
+    
+    $("#winner").text(winner == 1 ? "AI Won!" : winner == 0 ? "You Won!" : winner == -1 ? "Tie!" : "");
+    
+    if(winner == 1) {
+        score2++;
+        $('#score2').html(score2);
+    } else if (winner == 0) {
+        score1++;
+        $('#score1').html(score1);
+    }
+
+    $(".turn").html(myMove ? '<i class="fa fa-circle-o" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>');
+
+    // if(myMove) {
+    //     $(".turn").removeClass('fa fa-times');
+    //     $(".turn").addClass('fa fa-circle-o');
+    // } else {
+    //     $(".turn").removeClass('fa fa-circle-o');
+    //     $(".turn").addClass('fa fa-times');
+    // }
 }
 
-//reset function , when the game is done or someone click on Reset button i call this function
-function Reset()
-{
-	turn = false;
-	count = 0;
-	td.forEach(function(a){
-		a.textContent = " ";
-		a.classList.remove('help');
-	});
-	removeEventActioFrom_xORoFunction();
-	// renew to board to help the minimax algorithm to give me the random index
-	Board = Array.from(Array(9).keys()); 
+function getWinner(board) {
+   
+    // Check if someone won
+    vals = [true, false];
+    var allNotNull = true;
+    for (var k = 0; k < vals.length; k++) {
+        var value = vals[k];
+        
+        // Check rows, columns, and diagonals
+        var diagonalComplete1 = true;
+        var diagonalComplete2 = true;
+        for (var i = 0; i < 3; i++) {
+            if (board[i][i] != value) {
+                diagonalComplete1 = false;
+            }
+            if (board[2 - i][i] != value) {
+                diagonalComplete2 = false;
+            }
+            var rowComplete = true;
+            var colComplete = true;
+            for (var j = 0; j < 3; j++) {
+                if (board[i][j] != value) {
+                    rowComplete = false;
+                }
+                if (board[j][i] != value) {
+                    colComplete = false;
+                }
+                if (board[i][j] == null) {
+                    allNotNull = false;
+                }
+            }
+            if (rowComplete || colComplete) {
+                return value ? 1 : 0;
+            }
+        }
+        if (diagonalComplete1 || diagonalComplete2) {
+            return value ? 1 : 0;
+            myMove = false;
+        }
+    }
+    if (allNotNull) {
+        return -1;
+    }
+    return null;
 }
-function addEventActionFrom_xORoFunction()
-{
-	for(var i=0;i<td.length;i++)
-		 //for each square in the table call to xORo function and chagne depending the situation
-		 td[i].addEventListener('click',xORo);
-
-}
-function removeEventActioFrom_xORoFunction(){
-	for(let i=0;i<td.length;i++)
-			td[i].removeEventListener('click',xORo);
-}
-
-//---------------------------------- miniMax algorithm --------------------------------------------
-function emptyIndexies(B)
-{
-  return B.filter(s => s != "O" && s!='X');
+    
+function updateButtons() {
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+            $("#c" + i + "" + j).text(board[i][j] == false ? "x" : board[i][j] == true ? "o" : "");
+            if (board[i][j] == true) {
+              $("#c" + i + "" + j).addClass('notEmpty');
+            }
+        }
+    }
 }
 
-function checkIfWinner(board , player)
-{	if(board[0]===player&&board[1]===player&&board[2]===player||
-	    board[0]===player&&board[3]===player&&board[6]===player||
-		board[0]===player&&board[4]===player&&board[8]===player||
-		board[1]===player&&board[4]===player&&board[7]===player||
-		board[2]===player&&board[5]===player&&board[8]===player||
-		board[3]===player&&board[4]===player&&board[5]===player||
-		board[6]===player&&board[7]===player&&board[8]===player||
-		board[2]===player&&board[4]===player&&board[6]===player)
-			return true;
-	return false;
+function makeMove() {
+    setTimeout(function() {
+        board = minimaxMove(board);
+        console.log(numNodes);
+        console.log('selected');
+        console.log(board);
+        myMove = false;
+        updateMove();
+    }, 600);
 }
 
-function minimax(newBoard, player) {
-
-	var availSpots = emptyIndexies(newBoard);
-
-	if (checkIfWinner(newBoard, Me)) {
-		return {score: -10};
-	} else if (checkIfWinner(newBoard, Computer)) {
-		return {score: 10};
-	} else if (availSpots.length === 0) {
-		return {score: 0};
-	}
-	var moves = [];
-	for (var i = 0; i < availSpots.length; i++) {
-		var move = {};
-		move.index = newBoard[availSpots[i]];
-		newBoard[availSpots[i]] = player;
-
-		if (player == Computer) {
-			var result = minimax(newBoard, Me);
-			move.score = result.score;
-		} else {
-			var result = minimax(newBoard, Computer);
-			move.score = result.score;
-		}
-
-		newBoard[availSpots[i]] = move.index;
-
-		moves.push(move);
-	}
-
-	var bestMove;
-	if(player === Computer) {
-		var bestScore = -10000;
-		for(var i = 0; i < moves.length; i++) {
-			if (moves[i].score > bestScore) {
-				bestScore = moves[i].score;
-				bestMove = i;
-			}
-		}
-	} else {
-		var bestScore = 10000;
-		for(var i = 0; i < moves.length; i++) {
-			if (moves[i].score < bestScore) {
-				bestScore = moves[i].score;
-				bestMove = i;
-			}
-		}
-	}
-
-	return moves[bestMove];
+function minimaxMove(board) {
+    numNodes = 0;
+    return recurseMinimax(board, true)[1];
 }
-//---------------------------------- miniMax algorithm --------------------------------------------
+
+var numNodes = 0;
+
+function recurseMinimax(board, player) {
+    numNodes++;
+    var winner = getWinner(board);
+    if (winner != null) {
+        switch(winner) {
+            case 1:
+                // AI wins
+                return [1, board]
+            case 0:
+                // opponent wins
+                return [-1, board]
+            case -1:
+                // Tie
+                return [0, board];
+        }
+    } else {
+        // Next states
+        var nextVal = null;
+        var nextBoard = null;
+        
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) {
+                if (board[i][j] == null) {
+                    board[i][j] = player;
+                    var value = recurseMinimax(board, !player)[0];
+                    if ((player && (nextVal == null || value > nextVal)) || (!player && (nextVal == null || value < nextVal))) {
+                        nextBoard = board.map(function(arr) {
+                            return arr.slice();
+                        });
+                        nextVal = value;
+                    }
+                    board[i][j] = null;
+                }
+            }
+        }
+        return [nextVal, nextBoard];
+    }
+}
+
+updateMove();
