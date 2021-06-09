@@ -3,19 +3,27 @@
 <head>
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='computer.css')}}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 </head>
+<script>
+
+    //vs Computer [1]
+	const GoHome = () =>
+		history.push({
+			pathname: "/"
+		});
+</script>
+
 
 <body>
-	<div class="container">
-
-        
+	<div class="container">    
 
 
-        <div class="left-side">
+        <div class="left-side col-sm-12">
             <!-- Ver se deu -->
-            <Link to="/" className="underline text-gray-500">
+            <button onClick={GoHome} className="underline text-gray-500">
                 Go Home
             </Link>
             <br/>
@@ -27,7 +35,7 @@
             <div id="winner"></div>
         </div>
 
-        <div class="center">
+        <div class="center col-sm-12">
             <div class="gameboard">
                 <div class="row">
                     <div class="square bottom right" id="c00"></div>
@@ -47,7 +55,7 @@
             </div>
         </div>
 
-        <div class="right-side">
+        <div class="right-side col-sm-12">
             <div class="player">
                 <p class="player-name">Player: </p>
                 <p class="score" id="score1">0</p>
