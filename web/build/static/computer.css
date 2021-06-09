@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|VT323|Indie+Flower');
 
-body {
-    background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
-}
-
 .container {
     margin-left: 10%;  
 }
