@@ -6,21 +6,23 @@ import random
 from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
 #from flask_mysqldb import MYSQL
-#from flask import Flask, request, session, redirect, url_for, render_template
+from flask import Flask, request, session, redirect, url_for, render_template, flash
 #import pymysql 
 #import re 
 
+import psycopg2
+import psycopg2.extras
+import re 
+from werkzeug.security import generate_password_hash, check_password_hash
+ 
 #app = Flask(__name__)
-
-#MYSQL Conn
-#app.config['MYSQL_USER'] = 'bca97c0b98a93b'
-#app.config['MYSQL_PASSWORD'] = '1c291eda'
-#app.config['MYSQL_HOST'] = 'eu-cdbr-west-01.cleardb.com'
-#app.config['MYSQL_DB'] = 'heroku_9fcb600dcaa8d34'
-#app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-
-#mysql = MYSQL(app)
-#mysql.init_app(app)
+ 
+DB_HOST = "ec2-54-155-226-153.eu-west-1.compute.amazonaws.com"
+DB_NAME = "dessvf9689cvi3"
+DB_USER = "lqgpnwfbpgtmty"
+DB_PASS = "899188a269ef9112a6cf6b6fe8da76dcbf4e752e6be1707a2c43d3521a6021c8"
+ 
+conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
 @game_blueprint.route('/')
 def index():
@@ -40,12 +42,46 @@ def join(gameId):
 def computer():
     return render_template("computer.html")
 
-@game_blueprint.route('/login')
+@game_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+   
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        print(password)
+ 
+        # Check if account exists using MySQL
+        cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
+        # Fetch one record and return result
+        account = cursor.fetchone()
+ 
+        if account:
+            password_rs = account['password']
+            print(password_rs)
+            # If account exists in users table in out database
+            if check_password_hash(password_rs, password):
+                # Create session data, we can access this data in other routes
+                #session['loggedin'] = True
+                #['id'] = account['id']
+                session['username'] = account['username']
+                # Redirect to home page
+                return redirect(url_for('index.html'))
+            else:
+                # Account doesnt exist or username/password incorrect
+                flash('Incorrect username/password')
+        else:
+            # Account doesnt exist or username/password incorrect
+            flash('Incorrect username/password')
+ 
+    return render_template('login.html')
 
 @game_blueprint.route('/register')
 def register():
+
+
+
     return render_template("register.html")
 
 @game_blueprint.route('/api/create/game')
