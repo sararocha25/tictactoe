@@ -67,7 +67,8 @@ def login():
                 #['id'] = account['id']
                 session['username'] = account['username']
                 # Redirect to home page
-                return redirect(url_for('index.html'))
+                #return redirect(url_for('index.html'))
+                flash('Entered')
             else:
                 # Account doesnt exist or username/password incorrect
                 flash('Incorrect username/password')
