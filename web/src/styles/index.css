@@ -28,3 +28,7 @@ body {
 .Toastify__toast {
 	@apply rounded-lg mb-4 md:mb-0;
 }
+
+#menu{
+	margin-top: 10%;
+}

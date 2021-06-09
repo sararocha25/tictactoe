@@ -133,7 +133,7 @@ const Home: React.FC<any> = () => {
 			<div className="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul className="navbar-nav ml-auto">
 				</ul>
-				<ul className="navbar-nav">
+				<ul className="navbar-nav" id='menu'> 
 					<React.Fragment>
 					<NavLink className="nav-link" to={"/login"}>Login &nbsp; </NavLink>
 					<NavLink  className="nav-link" to={"/register"}>Sign up</NavLink>
