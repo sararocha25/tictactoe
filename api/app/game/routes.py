@@ -56,7 +56,9 @@ def login():
         cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
         # Fetch one record and return result
         account = cursor.fetchone()
- 
+
+
+        abort(400, account)
         if account:
             password_rs = account['password']
             print(password_rs)
@@ -89,7 +91,6 @@ def register():
         password = request.form['password']
         email = request.form['email']
 
-        abort(400, username)
         _hashed_password = generate_password_hash(password)
  
         #Check if account exists using MySQL
