@@ -102,12 +102,6 @@ body {
     width: 43px;
 }
 
-a {
-    text-decoration: none;
-    color: red;
-    width: 300px;
-}
-
 input#restart {
     width: 90px;
     margin: 10px 0 20px 0;
