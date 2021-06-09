@@ -23,11 +23,10 @@ body {
     flex-grow: 0;
 }
 
-/*
 .row {
     clear: both;
     overflow: hidden;
-}*/
+}
 
 .square {
     float: left;
@@ -50,7 +49,7 @@ body {
 
 .left-side {
     flex-grow: 1;
-    /*display: flex;*/
+    display: flex;
     flex-direction: column;
     max-width: 160px;
 }
