@@ -1,8 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Lato|VT323|Indie+Flower');
+/*@import url('https://fonts.googleapis.com/css?family=Lato|VT323|Indie+Flower');
+
+body {
+    background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
+}
+.container {
+    min-width: 650px;
+    max-width: 900px;
+    display: flex;
+    margin: 40px auto 20px auto;    
+}*/
 
 .container {
-    margin-left: 10%;  
+    margin-left: 15%;  
 }
+
 
 .gameboard {
     width: 360px;
