@@ -105,7 +105,7 @@ def register():
             flash('Please fill out the form!')
         else:
             # Account doesnt exists and the form data is valid, now insert new account into users table
-            cursor.execute("INSERT INTO users ( username, password, email) VALUES (%s,%s,%s)", (username, _hashed_password, email))
+            cursor.execute("INSERT INTO user ( username, password, email) VALUES (%s,%s,%s)", (username, _hashed_password, email))
             conn.commit()
             flash('You have successfully registered!')
     elif request.method == 'POST':
