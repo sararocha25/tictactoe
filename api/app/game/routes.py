@@ -28,7 +28,6 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
 def index():
     return render_template('index.html')
 
-
 @game_blueprint.route('/game')
 def game():
     return render_template('index.html')
@@ -43,7 +42,7 @@ def computer():
     return render_template("computer.html")
 
 @game_blueprint.route('/construction')
-def computer():
+def construction():
     return render_template("construction.html")
 
 @game_blueprint.route('/login', methods=['GET', 'POST'])
