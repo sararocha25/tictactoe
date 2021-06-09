@@ -51,6 +51,7 @@ def login():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
+        print(password)
          
         # Check if account exists using MySQL
         cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
@@ -81,6 +82,7 @@ def login():
 @game_blueprint.route('/register' , methods=['GET', 'POST'])
 def register():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute("INSERT INTO user ( username, password, email) VALUES ('ola', 'hashed_password', 'email')")
  
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
