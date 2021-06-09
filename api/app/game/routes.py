@@ -7,6 +7,7 @@ from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
 #from flask_mysqldb import MYSQL
 from flask import Flask, request, session, redirect, url_for, render_template, flash, abort
+from flask_sqlalchemy import SQLAlchemy
 #import pymysql 
 #import re 
 
@@ -25,6 +26,23 @@ DB_PASS = "899188a269ef9112a6cf6b6fe8da76dcbf4e752e6be1707a2c43d3521a6021c8"
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
 
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://lqgpnwfbpgtmty:899188a269ef9112a6cf6b6fe8da76dcbf4e752e6be1707a2c43d3521a6021c8@ec2-54-155-226-153.eu-west-1.compute.amazonaws.com:5432/dessvf9689cvi3'
+ 
+db=SQLAlchemy(app)
+
+
+class User(db.Model):
+    __tablename__='user'
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String)
+    email = db.Column(db.String)
+    password = db.Column(db.String)
+    
+    def __init__(self,username,email,password):
+        self.username=username
+        self.email=email
+        self.password=password
+        
 
 @game_blueprint.route('/')
 def index():
@@ -81,43 +99,17 @@ def login():
  
     return render_template('login.html')
 
-@game_blueprint.route('/register' , methods=['GET', 'POST'])
+@game_blueprint.route('/register' , method=[ 'POST'])
 def register():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    username= request.form['username']
+    email=request.form['email']
+    password=request.form['password']
  
-    # Check if "username", "password" and "email" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        # Create variables for easy access
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
+    user=User(username,email,password)
+    db.session.add(user)
+    db.session.commit()
 
-        _hashed_password = generate_password_hash(password)
- 
-        #Check if account exists using MySQL
-        cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
-        account = cursor.fetchone()
-        
-        print(account)
-        # If account exists show error and validation checks
-        if account:
-            flash('Account already exists!')
-        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            flash('Invalid email address!')
-        elif not re.match(r'[A-Za-z0-9]+', username):
-            flash('Username must contain only characters and numbers!')
-        elif not username or not password or not email:
-            flash('Please fill out the form!')
-        else:
-            # Account doesnt exists and the form data is valid, now insert new account into users table
-            cursor.execute("INSERT INTO user ( username, password, email) VALUES (%s,%s,%s)", (username, _hashed_password, email))
-            conn.commit()
-            flash('You have successfully registered!')
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        flash('Please fill out the form!')
-    # Show registration form with message (if any)
-    return render_template('register.html')
+    return render_template('index.html')
 
 @game_blueprint.route('/api/create/game')
 def create_game():
