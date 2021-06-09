@@ -11,58 +11,58 @@
 <body>
 	<div class="container">    
 
-
-        <div class="left-side col-xs-12">
-            <!-- Ver se deu -->
-            <a href="https://jogodogalo.herokuapp.com" className="underline text-gray-500">
-                Go Home
-            </a>
-            <br/>
-            <h2> Versus Computer </h2>
-            <br/>
-            <div class="button border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" id="restart">
-                <div>Restart Game</div>
+        <div class="row">
+            <div class="col-sm">
+                <!-- Ver se deu -->
+                <a href="https://jogodogalo.herokuapp.com" className="underline text-gray-500">
+                    Go Home
+                </a>
+                <br/>
+                <h2> Versus Computer </h2>
+                <br/>
+                <div class="button border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" id="restart">
+                    <div>Restart Game</div>
+                </div>
+                <div id="winner"></div>
             </div>
-            <div id="winner"></div>
+
+            <div class="col-sm">
+                <div class="gameboard">
+                    <div class="row">
+                        <div class="square bottom right" id="c00"></div>
+                        <div class="square bottom right" id="c01"></div>
+                        <div class="square bottom" id="c02"></div>
+                    </div>
+                    <div class="row">
+                        <div class="square bottom right" id="c10"></div>
+                        <div class="square bottom right" id="c11"></div>
+                        <div class="square bottom" id="c12"></div>
+                    </div>
+                    <div class="row">
+                        <div class="square right" id="c20"></div>
+                        <div class="square right" id="c21"></div>
+                        <div class="square" id="c22"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="player">
+                    <p class="player-name">Player: </p>
+                    <p class="score" id="score1">0</p>
+                </div>
+                <div class="player">
+                    <p class="player-name">Computer: </p>
+                    <p class="score" id="score2">0</p>
+                </div>
+                <div class="player">
+                    <div class="player-turn">Player's turn: &nbsp;&nbsp;&nbsp;&nbsp; </div>
+                    <div class="score">
+                        <p class="turn"></p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="center col-xs-12">
-            <div class="gameboard">
-                <div class="row">
-                    <div class="square bottom right" id="c00"></div>
-                    <div class="square bottom right" id="c01"></div>
-                    <div class="square bottom" id="c02"></div>
-                </div>
-                <div class="row">
-                    <div class="square bottom right" id="c10"></div>
-                    <div class="square bottom right" id="c11"></div>
-                    <div class="square bottom" id="c12"></div>
-                </div>
-                <div class="row">
-                    <div class="square right" id="c20"></div>
-                    <div class="square right" id="c21"></div>
-                    <div class="square" id="c22"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="right-side col-xs-12">
-            <div class="player">
-                <p class="player-name">Player: </p>
-                <p class="score" id="score1">0</p>
-            </div>
-            <div class="player">
-                <p class="player-name">Computer: </p>
-                <p class="score" id="score2">0</p>
-            </div>
-            <div class="player">
-                <div class="player-turn">Player's turn: &nbsp;&nbsp;&nbsp;&nbsp; </div>
-                <div class="score">
-                    <p class="turn"></p>
-                </div>
-            </div>
-        </div>
-
     </div>
 	<script src="{{url_for('static', filename='computer.js')}}"></script>
 </body>
