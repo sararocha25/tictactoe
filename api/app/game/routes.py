@@ -114,9 +114,6 @@ def register():
     # Show registration form with message (if any)
     return render_template('register.html')
 
-
-    return render_template("register.html")
-
 @game_blueprint.route('/api/create/game')
 def create_game():
     game_id = random.randint(0, 99999)
