@@ -11,7 +11,12 @@ body {
 }*/
 
 .container {
-    margin-left: 20%;  
+    display:flex;
+    min-width: 650px;
+    max-width: 900px;
+    display: flex;
+    margin: 40px auto 20px auto;   
+    /* margin-left: 20%;  */
 }
 
 
@@ -111,11 +116,28 @@ input#restart {
     margin: 10px 0 20px 0;
 }
 
-div#winner {
+a#winner {
     margin-left: 8%;
     margin-top: 20px;
-    font-weight: 400;
 }
+
+
+marquee {
+    background: black;
+    color: whitesmoke;
+    font-family: 'VT323';
+    margin-top: 20px;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 75%;
+    margin-left: 20%;
+    margin-right: 5%;
+    border-radius: 4px;
+}
+
+
 
 .button {
     position: relative;

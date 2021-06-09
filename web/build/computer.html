@@ -23,7 +23,17 @@
                 <div class="button border border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-3 transition" id="restart">
                     <div>Restart Game</div>
                 </div>
-                <div id="winner" style="font-weight: bold;"></div>
+                <marquee
+                    onmouseover="this.stop()"
+                    onmouseout="this.start()"
+                    loop="-1"
+                    behavior="scroll"
+                    scrollamount="5"
+                    scrolldelay="0"
+                    direction="left">
+                    <a href="https://www.angelopalmieri.com" target="_blank" id="winner"></a><br>
+                    </marquee>
+                <!-- <div id="winner" style="font-weight: bold;"></div> -->
             </div>
 
             <div class="center">
