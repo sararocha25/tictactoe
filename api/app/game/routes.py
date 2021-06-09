@@ -15,7 +15,7 @@ import psycopg2.extras
 import re 
 from werkzeug.security import generate_password_hash, check_password_hash
  
-#app = Flask(__name__)
+app = Flask(__name__)
  
 DB_HOST = "ec2-54-155-226-153.eu-west-1.compute.amazonaws.com"
 DB_NAME = "dessvf9689cvi3"
@@ -23,6 +23,8 @@ DB_USER = "lqgpnwfbpgtmty"
 DB_PASS = "899188a269ef9112a6cf6b6fe8da76dcbf4e752e6be1707a2c43d3521a6021c8"
  
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
+
+
 
 @game_blueprint.route('/')
 def index():
@@ -56,8 +58,7 @@ def login():
         cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
         # Fetch one record and return result
         account = cursor.fetchone()
-        abort(400,account)
-
+       
         if account:
             password_rs = account['password']
             print(password_rs)
@@ -96,7 +97,7 @@ def register():
         #Check if account exists using MySQL
         cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
         account = cursor.fetchone()
-        abort(400,account)
+        
         print(account)
         # If account exists show error and validation checks
         if account:
