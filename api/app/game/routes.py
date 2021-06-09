@@ -106,7 +106,7 @@ def register():
  
     user=User(username,email,password)
     db.session.add(user)
-    db.session.commit()hello
+    db.session.commit()
 
     return render_template('index.html')
 
