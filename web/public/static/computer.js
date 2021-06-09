@@ -72,7 +72,7 @@ function updateMove() {
         $('#score1').html(score1);
     }
 
-    $(".turn").html(myMove ? '<i class="fa fa-circle-o" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>');
+    $(".turn").html(myMove ? '<i class="fas fa-circle" aria-hidden="true"></i>' : '<i class="fas fa-times" aria-hidden="true"></i>');
 
     // if(myMove) {
     //     $(".turn").removeClass('fa fa-times');
