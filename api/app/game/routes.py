@@ -56,6 +56,7 @@ def login():
         cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
         # Fetch one record and return result
         account = cursor.fetchone()
+        abort(400,account)
 
         if account:
             password_rs = account['password']
@@ -67,7 +68,7 @@ def login():
                 #['id'] = account['id']
                 session['username'] = account['username']
                 # Redirect to home page
-                abort(400,'loggedin')
+                
                 return redirect(url_for('index.html'))
                 #flash('Entered')
             else:
