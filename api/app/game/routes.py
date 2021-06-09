@@ -42,6 +42,10 @@ def join(gameId):
 def computer():
     return render_template("computer.html")
 
+@game_blueprint.route('/construction')
+def computer():
+    return render_template("construction.html")
+
 @game_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
