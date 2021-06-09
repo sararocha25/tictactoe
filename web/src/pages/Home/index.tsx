@@ -130,13 +130,12 @@ const Home: React.FC<any> = () => {
 
 		<nav className="stroke navbar navbar-expand-lg navbar-light fixed-top">
 			<div className="container">
-			<Link className="navbar-brand" to={"/login"}>Jogo do Galo</Link>
 			<div className="collapse navbar-collapse" id="navbarTogglerDemo02">
 				<ul className="navbar-nav ml-auto">
 				</ul>
 				<ul className="navbar-nav">
 					<React.Fragment>
-					<NavLink className="nav-link" to={"/login"}>Login</NavLink>
+					<NavLink className="nav-link" to={"/login"}>Login &nbsp; </NavLink>
 					<NavLink  className="nav-link" to={"/register"}>Sign up</NavLink>
 					</React.Fragment>
 				</ul>
@@ -238,7 +237,7 @@ const Home: React.FC<any> = () => {
 			</div>
 			<div className=" mb-4 text-center flex flex-col text-sm md:text-base">
 				<p>
-					Inspired by Niketan Gulekar project
+					Inspired by Gulekar project
 				</p>
 			</div>
 		</div>
