@@ -125,8 +125,9 @@ a#winner {
 
 
 marquee {
-    background: black;
-    color: whitesmoke;
+    background: none;
+    color: black;
+    font-weight: bold;
     font-family: 'VT323';
     margin-top: 20px;
     text-align: right;
