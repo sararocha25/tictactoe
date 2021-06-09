@@ -50,7 +50,7 @@ body {
 
 .left-side {
     flex-grow: 1;
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     max-width: 160px;
 }
@@ -78,14 +78,14 @@ body {
     margin: 0;
     border-radius: 4px;
     font-family: 'VT323';
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     max-width: 57px;
 }
 
 .player {
-    display: flex;
+    /* display: flex;*/
     align-items: center;
     height: 100px;
     padding-right: 5px;
@@ -102,7 +102,7 @@ body {
 
 .turn {
     flex-grow: 1;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     width: 43px;
 }
