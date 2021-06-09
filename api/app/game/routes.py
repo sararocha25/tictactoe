@@ -6,7 +6,7 @@ import random
 from flask_socketio import join_room, leave_room
 game_blueprint = Blueprint('game', __name__)
 #from flask_mysqldb import MYSQL
-from flask import Flask, request, session, redirect, url_for, render_template, flash
+from flask import Flask, request, session, redirect, url_for, render_template, flash, abort
 #import pymysql 
 #import re 
 
@@ -88,7 +88,8 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-    
+
+        abort(400, username)
         _hashed_password = generate_password_hash(password)
  
         #Check if account exists using MySQL
