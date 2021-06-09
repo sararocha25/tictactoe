@@ -77,9 +77,42 @@ def login():
  
     return render_template('login.html')
 
-@game_blueprint.route('/register')
+@game_blueprint.route('/register' , methods=['GET', 'POST'])
 def register():
-
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+ 
+    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+        # Create variables for easy access
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+    
+        _hashed_password = generate_password_hash(password)
+ 
+        #Check if account exists using MySQL
+        cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
+        account = cursor.fetchone()
+        print(account)
+        # If account exists show error and validation checks
+        if account:
+            flash('Account already exists!')
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            flash('Invalid email address!')
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            flash('Username must contain only characters and numbers!')
+        elif not username or not password or not email:
+            flash('Please fill out the form!')
+        else:
+            # Account doesnt exists and the form data is valid, now insert new account into users table
+            cursor.execute("INSERT INTO users ( username, password, email) VALUES (%s,%s,%s)", (username, _hashed_password, email))
+            conn.commit()
+            flash('You have successfully registered!')
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        flash('Please fill out the form!')
+    # Show registration form with message (if any)
+    return render_template('register.html')
 
 
     return render_template("register.html")
