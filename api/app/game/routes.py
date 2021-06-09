@@ -10,7 +10,6 @@ from flask import Flask, request, session, redirect, url_for, render_template, f
 from flask_sqlalchemy import SQLAlchemy
 #import pymysql 
 #import re 
-
 import psycopg2
 import psycopg2.extras
 import re 
@@ -99,7 +98,7 @@ def login():
  
     return render_template('login.html')
 
-@game_blueprint.route('/register' , method=[ 'POST'])
+@app.route('/register' , method=[ 'POST'])
 def register():
     username= request.form['username']
     email=request.form['email']
