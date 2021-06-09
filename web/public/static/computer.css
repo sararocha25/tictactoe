@@ -4,6 +4,9 @@ body {
     background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
 }
 
+.container {
+    margin-left: 10%;  
+}
 
 .gameboard {
     width: 360px;
@@ -13,6 +16,11 @@ body {
     flex-grow: 0;
 }
 
+/*
+.row {
+    clear: both;
+    overflow: hidden;
+}*/
 
 .square {
     float: left;
