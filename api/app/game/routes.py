@@ -44,8 +44,7 @@ def computer():
 
 @game_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute("INSERT INTO user ( username, password, email) VALUES ('ola', 'hashed_password', 'email')")
+    cursor = conn.cursor()
    
     # Check if "username" and "password" POST requests exist (user submitted form)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
@@ -82,7 +81,6 @@ def login():
 @game_blueprint.route('/register' , methods=['GET', 'POST'])
 def register():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute("INSERT INTO user ( username, password, email) VALUES ('ola', 'hashed_password', 'email')")
  
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
