@@ -1,13 +1,3 @@
-/**
-*             TIC TAC TOE
-*         for freeCodeCamp.com
-*
-*       by Angelo Palmieri - 2017
-*
-* Game using CSS3, jQuery and the minimax algorithm
-*
-*/
-
 var board = [
     [null, null, null],
     [null, null, null],
@@ -73,14 +63,6 @@ function updateMove() {
     }
 
     $(".turn").html(myMove ? 'O' : 'X');
-
-    // if(myMove) {
-    //     $(".turn").removeClass('fa fa-times');
-    //     $(".turn").addClass('fa fa-circle-o');
-    // } else {
-    //     $(".turn").removeClass('fa fa-circle-o');
-    //     $(".turn").addClass('fa fa-times');
-    // }
 }
 
 function getWinner(board) {

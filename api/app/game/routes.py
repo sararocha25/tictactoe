@@ -15,7 +15,7 @@ import psycopg2.extras
 import re 
 from werkzeug.security import generate_password_hash, check_password_hash
  
-app = Flask(__name__)
+#app = Flask(__name__)
  
 DB_HOST = "ec2-54-155-226-153.eu-west-1.compute.amazonaws.com"
 DB_NAME = "dessvf9689cvi3"
@@ -80,7 +80,7 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/register' , methods=['GET', 'POST'])
+@game_blueprint.route('/register' , methods=['GET', 'POST'])
 def register():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
  

@@ -237,18 +237,8 @@ const Home: React.FC<any> = () => {
 				)}
 			</div>
 			<div className=" mb-4 text-center flex flex-col text-sm md:text-base">
-				<a
-					href="https://github.com/NiketanG/tic-tac-toe-online"
-					target="_blank"
-					rel="noreferrer"
-					className="underline text-gray-600"
-				>
-					Learn More
-				</a>
 				<p>
-					Designed and Developed by{" "}
-					<a href="http://bit.ly/nikketan">Niketan Gulekar</a> &copy;
-					{new Date().getFullYear()}
+					Inspired by Niketan Gulekar project
 				</p>
 			</div>
 		</div>
