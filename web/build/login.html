@@ -3,7 +3,7 @@
 
 <div class="outer">
 <div class="inner">
-<form>
+<form method="post" action="">
 
     <h3>Log in</h3>
 
@@ -24,10 +24,23 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-dark btn-lg btn-block">Sign in</button>
+    <button type="submit" class="btn btn-dark btn-lg btn-block" action="">Sign in</button>
     <p class="forgot-password text-right">
         Forgot <a href="#">password?</a>
     </p>
+
+    {% with messages = get_flashed_messages()  %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </form>
 </div>
 </div>
